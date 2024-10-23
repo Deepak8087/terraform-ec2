@@ -1,11 +1,13 @@
 provider "aws" {
-  region = "us-east-1" 
+  region = "us-east-2"
 }
 
-resource "aws_instance" "example" {
-  ami           = "ami-0f71013b2c8bd2c29"
+resource "aws_instance" "one" {
+  count         = 2
+  ami           = "ami-050cd642fd83388e4"
   instance_type = "t2.micro"
+  
   tags = {
-    Name = "jenkins-pipeline"
+    Name = "${terraform.workspace}-server"
   }
 }
